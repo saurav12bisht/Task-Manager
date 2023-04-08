@@ -31,12 +31,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
             android:backgroundTint="#F44336"
             android:text="cancel"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etTittle"
+            app:layout_constraintTop_toBottomOf="@+id/description_et"
             app:layout_constraintVertical_bias="0.496" />
 
         <Button
@@ -51,6 +52,19 @@
             app:layout_constraintStart_toEndOf="@+id/button3"
             app:layout_constraintTop_toTopOf="@+id/button3"
             app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/description_et"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Enter Description Here"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etTittle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
