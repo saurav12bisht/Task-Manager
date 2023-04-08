@@ -35,9 +35,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        //init function for all initialisations
         init()
+
+        //function for getting tasks from firebase
         getTaskData()
+
+        //on floating action button click for adding new tasks
         onClickFab()
+
+        //function for swipe functionality
         swipeFunctionality()
 
 
@@ -59,7 +67,8 @@ class MainActivity : AppCompatActivity() {
                 myRef.child(keys[viewHolder.adapterPosition]).removeValue().addOnSuccessListener {
                     Toast.makeText(applicationContext, "Task Removed", Toast.LENGTH_LONG).show()
                 }.addOnFailureListener {
-                    Toast.makeText(applicationContext, "Some error occurred", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Some error occurred", Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         }).attachToRecyclerView(binding.taskRecyclerview)
@@ -84,10 +93,13 @@ class MainActivity : AppCompatActivity() {
             val submit = dialog.findViewById<Button>(R.id.button2)
             val cancel = dialog.findViewById<Button>(R.id.button3)
 
+            //on submit button click
             submit.setOnClickListener {
-                if(tittle.text.toString().trim().isEmpty()|| description.text.toString().trim().isEmpty()){
-                    Toast.makeText(this,"Please Fill All Fields",Toast.LENGTH_LONG).show()
-                }else{
+                if (tittle.text.toString().trim().isEmpty() || description.text.toString().trim()
+                        .isEmpty()
+                ) {
+                    Toast.makeText(this, "Please Fill All Fields", Toast.LENGTH_LONG).show()
+                } else {
                     val myRef = database.getReference("notes")
 
                     val map: HashMap<String, String> = HashMap()
@@ -98,15 +110,14 @@ class MainActivity : AppCompatActivity() {
 
                     myRef.child(myRef.push().key.toString()).setValue(map)
                         .addOnSuccessListener {
-                            Toast.makeText(this, "Task Added Successfully", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, "Task Added Successfully", Toast.LENGTH_LONG)
+                                .show()
                         }
-
                     dialog.dismiss()
                 }
-
-
             }
 
+            //on cancel click
             cancel.setOnClickListener {
                 dialog.dismiss()
             }
@@ -151,7 +162,6 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
-
 
 
     private fun log(message: String) {
